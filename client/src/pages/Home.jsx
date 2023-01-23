@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react'
 import FormField from '../components/FormField'
 import Loader from '../components/Loader'
 import RenderCards from '../components/RenderCards'
-import { URL } from './CreatePost'
 
 const Home = () => {
-
-    console.log('!!!!!!!!!!!!!!!!!!!!!!', URL);
 
     const [loading, setLoading] = useState(false)
     const [allPosts, setAllPosts] = useState(null)
@@ -17,7 +14,7 @@ const Home = () => {
     const fetchPosts = async () => {
         setLoading(true)
         try {
-            const response = await fetch(URL + '/posts',
+            const response = await fetch('https://eldars-image-generating-dall-e-clone.onrender.com/api/v1/posts',
             { method: 'GET',
             headers: {
             'Content-Type' : 'application/json',

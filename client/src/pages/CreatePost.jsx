@@ -5,13 +5,12 @@ import { getRandomPrompt } from '../utils'
 import FormField from '../components/FormField'
 import Loader from '../components/Loader'
 
-export const URL = (process.env.NODE_ENV === 'production')? 
-'https://eldars-image-generating-dall-e-clone.onrender.com/api/v1' :  
-'http://localhost:8080/api/v1'
+// export const URL = (process.env.NODE_ENV === 'production')? 
+// 'https://eldars-image-generating-dall-e-clone.onrender.com/api/v1' :  
+// 'http://localhost:8080/api/v1'
 
 const CreatePost = () => {
 
-  console.log('11!!!!!!!!!!!!!!!!!!', URL);
   const navigate = useNavigate()
   const [form, setForm] = useState({
     name: '',
@@ -26,7 +25,7 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingIMG(true)
-        const response = await fetch(URL + '/dalle', 
+        const response = await fetch('https://eldars-image-generating-dall-e-clone.onrender.com/api/v1/dalle', 
         { method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +51,7 @@ const CreatePost = () => {
     if (form.prompt && form.photo) {
       setLoading(true)
       try {
-        const response = await fetch(URL + '/posts',
+        const response = await fetch('https://eldars-image-generating-dall-e-clone.onrender.com/api/v1/posts',
         { method: 'POST',
           headers: {
             'Content-Type' : 'application/json',
