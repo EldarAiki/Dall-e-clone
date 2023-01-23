@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Card from '../components/card' 
 import FormField from '../components/FormField'
 import Loader from '../components/Loader'
 import RenderCards from '../components/RenderCards'
