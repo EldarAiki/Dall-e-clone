@@ -6,6 +6,8 @@ import { URL } from './CreatePost'
 
 const Home = () => {
 
+    console.log('!!!!!!!!!!!!!!!!!!!!!!', URL);
+
     const [loading, setLoading] = useState(false)
     const [allPosts, setAllPosts] = useState(null)
     const [searchText, setSearchText] = useState(null)

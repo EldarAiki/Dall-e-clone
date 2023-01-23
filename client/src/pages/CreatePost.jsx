@@ -11,6 +11,7 @@ export const URL = (process.env.NODE_ENV === 'production')?
 
 const CreatePost = () => {
 
+  console.log('11!!!!!!!!!!!!!!!!!!', URL);
   const navigate = useNavigate()
   const [form, setForm] = useState({
     name: '',
