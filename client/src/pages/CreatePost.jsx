@@ -5,12 +5,17 @@ import { getRandomPrompt } from '../utils'
 import FormField from '../components/FormField'
 import Loader from '../components/Loader'
 
+export const URL = (process.env.NODE_ENV === 'production')? 
+'https://eldars-image-generating-dall-e-clone.onrender.com/api/v1' :  
+'http://localhost:8080/api/v1'
+
 const CreatePost = () => {
 
   const navigate = useNavigate()
   const [form, setForm] = useState({
     name: '',
     prompt: '',
+    size: '1024x1024',
     photo: ''
   })
   const [generatingIMG, setGeneratingIMG] = useState(false)
@@ -20,12 +25,12 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingIMG(true)
-        const response = await fetch('http://localhost:8080/api/v1/dalle', 
+        const response = await fetch(URL + '/dalle', 
         { method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ prompt: form.prompt })
+          body: JSON.stringify({ prompt: form.prompt, size: form.size })
         })
 
         const data = await response.json()
@@ -46,7 +51,7 @@ const CreatePost = () => {
     if (form.prompt && form.photo) {
       setLoading(true)
       try {
-        const response = await fetch('http://localhost:8080/api/v1/posts',
+        const response = await fetch(URL + '/posts',
         { method: 'POST',
           headers: {
             'Content-Type' : 'application/json',
@@ -86,15 +91,29 @@ const CreatePost = () => {
         <form className='mt-16 max-w-3xl' onSubmit={handleSubmit}>
           <div className='flex flex-col gap-5'>
             <FormField 
-              labelName='your name'
+              labelName='Your name'
               type='text'
               name='name'
               placeholder='John Doe'
               value={form.name}
               handleChange={handleChange}
             /> 
+            <label className='block text-sm font-medium text-gray-900'>Image size</label>
+            <select 
+              name='size'
+              placeholder='1024x1024'
+              value={form.size}
+              onChange={handleChange}
+              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#4649ff]
+       focus:border-[#4649ff] outline-none block w-full p-3'
+       
+            >
+              <option value='256x256'>256x256</option>
+              <option value='512x512'>512x512</option>
+              <option value='1024x1024'>1024x1024</option>
+              </select> 
             <FormField 
-              labelName='prompt'
+              labelName='Prompt'
               type='text'
               name='prompt'
               placeholder='panda mad scientist mixing sparkling chemicals, digital art'

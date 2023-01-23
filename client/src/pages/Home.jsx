@@ -3,7 +3,7 @@ import Card from '../components/card'
 import FormField from '../components/FormField'
 import Loader from '../components/Loader'
 import RenderCards from '../components/RenderCards'
-
+import { URL } from './CreatePost'
 
 const Home = () => {
 
@@ -16,7 +16,7 @@ const Home = () => {
     const fetchPosts = async () => {
         setLoading(true)
         try {
-            const response = await fetch('http://localhost:8080/api/v1/posts',
+            const response = await fetch(URL + '/posts',
             { method: 'GET',
             headers: {
             'Content-Type' : 'application/json',
