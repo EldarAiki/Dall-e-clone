@@ -1,4 +1,4 @@
-import Card from "./card"
+import Card from './Card'
 
 const RenderCards = ({ data, title}) => {
     if (data?.length > 0) return data.map((post) => <Card key={post._id} {...post} /> )
