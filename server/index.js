@@ -15,7 +15,7 @@ app.use('/api/v1/posts', postRoutes)
 app.use('/api/v1/dalle', dalleRoutes)
 
 app.get('/', async(req, res) => {
-    res.send('Hello from DALL-E!')
+    res.send('Hello from DALL-E! and CHAT GBT-3')
 })
 
 const port = process.env.PORT || 8080
